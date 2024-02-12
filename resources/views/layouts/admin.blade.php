@@ -54,7 +54,7 @@
             @include('layouts.include.admin.navbar')
             <!-- Navbar End -->
 
-            <div class="pt-4">
+            <div class="pt-5">
                 @yield('content')
             </div>
 
@@ -65,8 +65,8 @@
         <!-- Content End -->
 
 
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+        {{-- <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a> --}}
     </div>
 
     <!-- JavaScript Libraries -->

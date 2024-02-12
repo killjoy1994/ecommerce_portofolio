@@ -18,8 +18,8 @@
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-list me-2"></i>Categories</a>
                 <div class="dropdown-menu bg-transparent border-0">
-                    <a href="button.html" class="dropdown-item">View Categories</a>
-                    <a href="typography.html" class="dropdown-item">Add Category</a>
+                    <a href="/admin/categories" class="dropdown-item">View Categories</a>
+                    <a href="/admin/categories/create" class="dropdown-item">Add Category</a>
                 </div>
             </div>
             <div class="nav-item dropdown">
