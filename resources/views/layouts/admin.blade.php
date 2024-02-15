@@ -29,6 +29,14 @@
 
     <!-- Template Stylesheet -->
     <link href="{{ asset('template/css/style.css') }}" rel="stylesheet">
+
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -71,6 +79,7 @@
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('template/lib/chart/chart.min.js') }}"></script>
     <script src="{{ asset('template/lib/easing/easing.min.js') }}"></script>
@@ -82,6 +91,8 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('template/js/main.js') }}"></script>
+
+    @stack('scripts')
 </body>
 
 </html>

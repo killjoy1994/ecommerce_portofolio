@@ -17,4 +17,8 @@ class Category extends Model
         'description',
         'image'
     ];
+
+    public function brands() {
+        return $this->hasMany(Brand::class, "category_id", 'id');
+    }
 }

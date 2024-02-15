@@ -25,15 +25,15 @@
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-plus-circle me-2"></i>Products</a>
                 <div class="dropdown-menu bg-transparent border-0">
-                    <a href="button.html" class="dropdown-item">View Products</a>
-                    <a href="typography.html" class="dropdown-item">Add Product</a>
+                    <a href="/admin/products" class="dropdown-item">View Products</a>
+                    <a href="/admin/products/create" class="dropdown-item">Add Product</a>
                 </div>
             </div>
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-gift me-2"></i>Brands</a>
                 <div class="dropdown-menu bg-transparent border-0">
-                    <a href="button.html" class="dropdown-item">View Brands</a>
-                    <a href="typography.html" class="dropdown-item">Add Brand</a>
+                    <a href="/admin/brands" class="dropdown-item">View Brands</a>
+                    <a href="/admin/brands/create" class="dropdown-item">Add Brand</a>
                 </div>
             </div>
             <div class="nav-item dropdown">

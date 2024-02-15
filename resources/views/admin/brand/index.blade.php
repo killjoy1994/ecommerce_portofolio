@@ -8,42 +8,35 @@
                     <h5>{{ session('message') }}</h5>
                 </div>
             @endif
-            <h6 class="mb-4">Category List</h6>
+            <h6 class="mb-4">Brand List</h6>
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Name</th>
                         <th>Slug</th>
-                        <th>Description</th>
-                        <th>Image</th>
+                        <th>Category</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($categories as $category)
+                    @forelse ($brands as $brand)
                         <tr>
-                            <td>{{ $category->id }}</td>
-                            <td>{{ $category->name }}</td>
-                            <td>{{ $category->slug }}</td>
-                            <td>{{ $category->description }}</td>
-                            <td>
-                                <div style="width: 100px; height: 60px">
-                                    <img style="width: 100%; height: 100%" src="{{ asset('storage/category/' . $category->image) }}" alt="">
-                                </div>
-                                
-                            </td>
+                            <td>{{ $brand->id }}</td>
+                            <td>{{ $brand->name }}</td>
+                            <td>{{ $brand->slug }}</td>
+                            <td>{{ $brand->category->name }}</td>
                             <td>
                                 <a class="btn btn-success btn-sm"
-                                    href="{{ '/admin/categories/' . $category->id . '/edit' }}">Edit</a>
-                                <a class="btn btn-danger btn-sm" href="{{ '/admin/categories/' . $category->id . '/delete'}}">Delete</a>
+                                    href="{{ '/admin/categories/' . $brand->id . '/edit' }}">Edit</a>
+                                <a class="btn btn-danger btn-sm" href="{{ '/admin/categories/' . $brand->id . '/delete'}}">Delete</a>
                             </td>
                         </tr>
                     @empty
                         <tr>
                             <td colspan="6">
                                 <div class="text-center">
-                                    <h5>No categories found. <a href="/admin/categories/create">Add</a> category</h5>
+                                    <h5>No brands found. <a href="/admin/categories/create">Add</a> category</h5>
                                 </div>
                             </td>
                         </tr>
