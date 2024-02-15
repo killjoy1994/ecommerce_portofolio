@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-plus-circle me-2"></i>Products</a>
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-shopping-cart me-2"></i>Products</a>
                 <div class="dropdown-menu bg-transparent border-0">
                     <a href="/admin/products" class="dropdown-item">View Products</a>
                     <a href="/admin/products/create" class="dropdown-item">Add Product</a>
@@ -34,6 +34,20 @@
                 <div class="dropdown-menu bg-transparent border-0">
                     <a href="/admin/brands" class="dropdown-item">View Brands</a>
                     <a href="/admin/brands/create" class="dropdown-item">Add Brand</a>
+                </div>
+            </div>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-images me-2"></i>Sliders</a>
+                <div class="dropdown-menu bg-transparent border-0">
+                    <a href="/admin/sliders" class="dropdown-item">View Sliders</a>
+                    <a href="/admin/sliders/create" class="dropdown-item">Add Slider</a>
+                </div>
+            </div>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-users me-2"></i>Users</a>
+                <div class="dropdown-menu bg-transparent border-0">
+                    <a href="/admin/users" class="dropdown-item">View Users</a>
+                    <a href="/admin/users/create" class="dropdown-item">Add User</a>
                 </div>
             </div>
             <div class="nav-item dropdown">

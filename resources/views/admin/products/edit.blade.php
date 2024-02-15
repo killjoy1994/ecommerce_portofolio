@@ -14,8 +14,9 @@
                     </div>
                 @endif
                 <h4 class="mb-4 text-secondary">Edit Product</h4>
-                <form action="{{ url('admin/products') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ url('admin/products/'. $product->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
@@ -29,23 +30,23 @@
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingInput" value={{ $product->name }}
+                                <input type="text" class="form-control" id="floatingInput" value="{{ $product->name }}"
                                     name="name" placeholder="name@example.com">
                                 <label for="floatingInput">Product Name</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="floatingInput" value={{ $product->slug }}
+                                <input type="text" class="form-control" id="floatingInput" value="{{ $product->slug }}"
                                     name="slug" placeholder="name@example.com">
                                 <label for="floatingInput">Product Slug</label>
                             </div>
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" id="floatingInput"
-                                    value={{ $product->small_description }} name="small_description"
+                                    value="{{ $product->small_description }}" name="small_description"
                                     placeholder="name@example.com">
                                 <label for="floatingInput">Small description</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <textarea class="form-control" name="description" value={{ $product->description }} placeholder="Leave a comment here"
+                                <textarea class="form-control" name="description" value="{{ $product->description }}" placeholder="Leave a comment here"
                                     id="floatingTextarea" style="height: 150px;">{{ $product->description }}</textarea>
                                 <label for="floatingTextarea">Description</label>
                             </div>
@@ -61,10 +62,14 @@
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <select name="brand" class="form-select form-select-md mb-3"
+                                <select class="form-select form-select-md mb-3"
                                     aria-label=".form-select-md example" name="brand" id="brand">
-                                    <option>Select Brand</option>
-                                    <option selected>{{ $product->brand }}</option>
+                                    {{-- <option>Select Brand</option> --}}
+                                    @foreach ($brands as $brand)
+                                    <option value="{{ $brand->name }}"
+                                        {{ $brand->name == $product->brand ? 'selected' : '' }}>
+                                        {{ $brand->name }}</option>
+                                @endforeach
                                 </select>
                             </div>
                         </div>
@@ -118,7 +123,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Save Product</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
                 </form>
             </div>
         </div>
@@ -141,8 +146,7 @@
                             $("#brand").empty();
                             // $("#category").append('<option>---Pilih Brand---</option>');
                             $.each(res, function(name, id) {
-                                let isSelected = name == "{{ $product->brand }}"
-                                $("#brand").append(`<option value=${name} selected=${isSelected}>${name}</option>`);
+                                $("#brand").append(`<option value=${name}>${name}</option>`);
                             });
                         } else {
                             console.log(res);

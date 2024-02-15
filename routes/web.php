@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +47,13 @@ Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/products/{id}/delete', [ProductController::class, 'destroy']);
 
     Route::get('/product-image/{id}/delete', [ProductController::class, 'destroyImage']);
+
+    Route::get('/sliders', [SliderController::class, 'index']);
+    Route::get('/sliders/create', [SliderController::class, 'create']);
+    Route::post('/sliders', [SliderController::class, 'store']);
+    Route::get('/sliders/{id}/edit', [SliderController::class, 'edit']);
+    Route::put('/sliders/{id}', [SliderController::class, 'update']);
+    Route::get('/sliders/{id}/delete', [SliderController::class, 'destroy']);
 });
 
 Auth::routes();

@@ -85,14 +85,16 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        $categories = Category::all();
         $product = Product::findOrFail($id);
-        return view('admin.products.edit', compact('product', 'categories'));
+        // dd($product);
+        $categories = Category::all();
+        $brands = Brand::where('category_id', $product->category_id)->orderBy('name', 'asc')->get();
+        return view('admin.products.edit', compact('product', 'categories', 'brands'));
     }
 
     public function update(Request $request, $id)
     {
-        dd($request->all());
+        // dd($request->all());
         $validated = $request->validate([
             "category_id" => "integer|required",
             "name" => "required|max:255",
@@ -108,6 +110,8 @@ class ProductController extends Controller
         ]);
 
         $product = Product::findOrFail($id);
+        // $product = Category::findOrFail($validated['category_id'])
+        //     ->products()->where('id', $id)->first();
 
         if ($product) {
             $product->update([
@@ -116,7 +120,7 @@ class ProductController extends Controller
                 'slug' => Str::slug($validated['slug']),
                 'small_description' => $validated['small_description'],
                 'description' => $validated['description'],
-                'brand' => $validated['brand'],
+                'brand' => $request->brand,
                 'price' => $validated['price'],
                 'quantity' => $validated['quantity'],
                 'trending' => $request->trending == true ? "1" : "0",
