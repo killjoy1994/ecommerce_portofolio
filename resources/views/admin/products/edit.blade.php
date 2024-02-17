@@ -91,14 +91,14 @@
                                 </div>
                             </div>
                             <div class="form-check mb-3">
-                                <input class="form-check-input" {{ $product->trending == '1' ? "checked" : "" }} type="checkbox" value="" name="trending"
+                                <input class="form-check-input" {{ $product->trending == '1' ? "checked" : "" }} type="checkbox" name="trending"
                                     id="flexCheckDefault">
                                 <label class="form-check-label" for="flexCheckDefault">
                                     Trending
                                 </label>
                             </div>
                             <div class="form-check mb-3">
-                                <input class="form-check-input" {{ $product->featured == '1' ? "checked" : "" }} type="checkbox" value="" name="featured"
+                                <input class="form-check-input" {{ $product->featured == '1' ? "checked" : "" }} type="checkbox" name="featured"
                                     id="flexCheckDefault2">
                                 <label class="form-check-label" for="flexCheckDefault2">
                                     Featured

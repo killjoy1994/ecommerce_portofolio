@@ -82,13 +82,13 @@
                                 </div>
                             </div>
                             <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" value="" name="trending" id="flexCheckDefault">
+                                <input class="form-check-input" type="checkbox" name="trending" id="flexCheckDefault">
                                 <label class="form-check-label" for="flexCheckDefault">
                                     Trending
                                 </label>
                             </div>
                             <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" value="" name="featured" id="flexCheckDefault2">
+                                <input class="form-check-input" type="checkbox" name="featured" id="flexCheckDefault2">
                                 <label class="form-check-label" for="flexCheckDefault2">
                                     Featured
                                 </label>

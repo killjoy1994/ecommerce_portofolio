@@ -34,7 +34,7 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
+        dd($request->all());
 
         $validated = $request->validate([
             "category_id" => "integer|required",
@@ -60,7 +60,7 @@ class ProductController extends Controller
             'price' => $validated['price'],
             'quantity' => $validated['quantity'],
             'trending' => $request->trending == true ? "1" : "0",
-            'trending' => $request->featured == true ? "1" : "0",
+            'featured' => $request->featured == true ? "1" : "0",
         ]);
 
         if ($request->hasFile('image')) {
@@ -124,11 +124,11 @@ class ProductController extends Controller
                 'price' => $validated['price'],
                 'quantity' => $validated['quantity'],
                 'trending' => $request->trending == true ? "1" : "0",
-                'trending' => $request->featured == true ? "1" : "0",
+                'featured' => $request->featured == true ? "1" : "0",
             ]);
 
             if ($request->hasFile('image')) {
-                $uploadPath = "store/products/";
+                $uploadPath = "storage/products/";
 
                 $i = 1;
                 foreach ($request->file('image') as $imageFile) {
