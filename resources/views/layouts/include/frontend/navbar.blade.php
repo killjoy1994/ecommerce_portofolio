@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light px-3">
+<nav class="navbar fixed-top  navbar-expand-lg navbar-light bg-light px-3 py-2 shadow-sm">
     <div class="container-fluid mt-3">
         <div class="d-flex justify-content-between w-100">
             <a class="navbar-brand fs-2" href="#">
@@ -14,16 +14,16 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center">
                             <li class="nav-item">
-                                <a class="nav-link active fs-4" aria-current="page" href="/">Home</a>
+                                <a class="nav-link active fs-5" aria-current="page" href="/">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link fs-4" href="/categories">All Categories</a>
+                                <a class="nav-link fs-5" href="/categories">All Categories</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link fs-4" href="/new-arrivals">New Arrivals</a>
+                                <a class="nav-link fs-5" href="/wishlist">Wishlist</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link fs-4" href="/featured">Fetured</a>
+                                <a class="nav-link fs-5" href="/cart">Cart</a>
                             </li>
                         </ul>
                     </div>

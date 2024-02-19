@@ -21,27 +21,51 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset('template/css/bootstrap.min.css') }}" rel="stylesheet">
 
+    <!-- Template Stylesheet -->
+    <link href="{{ asset('template/css/style.css') }}" rel="stylesheet">
+
     {{-- Owl Carousel --}}
     <link rel="stylesheet" href="{{ asset('owlCarousel/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('owlCarousel/css/owl.theme.default.min.css') }}">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
 
     <style>
         .nav-item {
             margin: 0 10px;
         }
+
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        .btn_product:hover {
+            background-color: #009CFF;
+            color: white;
+            border-color: transparent;
+        }
     </style>
 </head>
 
 <body>
-    <div id="app">
+    <div id="app" class="bg-white">
         @include('layouts.include.frontend.navbar')
+        {{-- @include('sweetalert::alert') --}}
 
-        <main class="py-4">
+        <main style="padding: 100px 0">
             @yield('content')
         </main>
+
+        @include('layouts.include.frontend.footer')
     </div>
 
 
@@ -51,11 +75,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 
+    {{-- Sweet Alert --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     {{-- Owl Carousel --}}
     {{-- <script src="jquery.min.js"></script> --}}
     <script src="{{ asset('owlCarousel/owl.carousel.min.js') }}"></script>
+{{-- 
+    <script src="{{ asset('template/js/custom.js') }}"></script> --}}
 
     @stack('scripts')
+    @stack('script')
 </body>
 
 </html>

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Auth;
@@ -27,6 +28,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(FrontendController::class)->group(function () {
     Route::get('/', 'index');
+    Route::get('/categories', 'categories');
+    Route::get('/categories/{categories_slug}', 'products');
+    Route::get('/categories/{categories_slug}/{product_slug}', 'productDetail');
+});
+
+Route::controller(CartController::class)->group(function() {
+    Route::get('/cart', 'index')->middleware(['auth']);
+    Route::post('/cart', 'store')->middleware(['auth']);
+    Route::post('/delete-cart-item', 'destroyProduct')->middleware(['auth']);
+    Route::post('/update-cart', 'updateCart')->middleware(['auth']);
 });
 
 Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
