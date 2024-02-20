@@ -31,6 +31,7 @@ Route::controller(FrontendController::class)->group(function () {
     Route::get('/', 'index');
     Route::get('/categories', 'categories');
     Route::get('/categories/{categories_slug}', 'products');
+    Route::get('/filter', 'filterProducts')->name('products.filter');
     Route::get('/categories/{categories_slug}/{product_slug}', 'productDetail');
 });
 

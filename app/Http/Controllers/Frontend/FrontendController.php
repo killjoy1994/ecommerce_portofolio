@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Slider;
@@ -21,18 +22,40 @@ class FrontendController extends Controller
 
     public function categories()
     {
-        $categories = Category::all();
+        $categories = Category::orderBy('name', 'asc')->get();
         return view('frontend.categories', compact('categories'));
     }
 
     public function products($category_slug)
     {
         $category = Category::where('slug', $category_slug)->first();
-        $brands = $category->brands;
-        $products = $category->products;
+        $brands = $category->brands()->orderBy('name', 'asc')->get();
+        $products = $category->products()->orderBy('name', 'asc')->get();
 
         // dd($brands);
         return view('frontend.products', compact('brands', 'products'));
+    }
+
+     public function filterProducts(Request $request)
+    {
+        $selectedBrands = $request->input('brands', []);
+        $priceOrder = $request->input('price_order', 'asc');
+
+        $brands = Brand::orderBy('name', 'asc')->get();
+
+        $query = Product::query();
+
+        if (!empty($selectedBrands)) {
+            $query->whereIn('brand', $selectedBrands);
+        }
+        
+        if (!empty($priceOrder)) {
+            $query->orderBy('price', $priceOrder);
+        }
+
+        $products = $query->get();
+
+        return view('frontend.products', compact('brands', 'products', 'selectedBrands', 'priceOrder'));
     }
 
     public function productDetail($category_slug, $product_slug)
