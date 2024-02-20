@@ -17,24 +17,22 @@
                                 </label>
                             </div>
                         @empty
-                        <div>
-                            <h5 class="text-secondary">This category have no brands yet.</h5 class="text-secondary">
-                        </div>
+                            <div>
+                                <h5 class="text-secondary">This category have no brands yet.</h5 class="text-secondary">
+                            </div>
                         @endforelse
                     </div>
                     <div class="mt-4">
                         <h5 class="text-secondary">Price</h5>
                         <hr>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                id="flexRadioDefault1">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                             <label class="form-check-label" for="flexRadioDefault1">
                                 Low to high
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                id="flexRadioDefault1">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                             <label class="form-check-label" for="flexRadioDefault1">
                                 High to low
                             </label>
@@ -44,14 +42,21 @@
                 <div class="col-md-9 ">
                     <div class="row">
                         @forelse ($products as $product)
-                        <div class="col-md-4">
-                            <a href="{{ Request::url() . '/' . $product->slug }}">
-                                <img src="{{ asset($product->productImages[0]->image) }}" width="100%" height="250px" alt="">
-                            </a>
-                            <a class="text-decoration-none" href="">
-                                <h4 class="mt-3 text-dark">{{ $product->name }}</h4>
-                            </a>
-                        </div>
+                            <div class="col-md-4 mb-5">
+                                <a href="{{ Request::url() . '/' . $product->slug }}">
+                                    <img src="{{ asset($product->productImages[0]->image) }}" width="100%" height="250px"
+                                        alt="">
+                                </a>
+                                {{-- <a class="text-decoration-none" href="">
+                            </a> --}}
+                                <div>
+                                    <h5 class="mt-3 text-dark">@currency($product->price)</h5>
+                                    <a href="{{ Request::url() . '/' . $product->slug }}">
+                                        <p class="m-0 fw-bold">{{ $product->name }}</p>
+                                    </a>
+                                    <p class="m-0">{{ $product->small_description }}</p>
+                                </div>
+                            </div>
                         @empty
                             <div>
                                 <h2 class="text-secondary text-center">This category have no products yet.</h2>

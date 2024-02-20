@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\ProductController;
@@ -39,6 +40,9 @@ Route::controller(CartController::class)->group(function() {
     Route::post('/delete-cart-item', 'destroyProduct')->middleware(['auth']);
     Route::post('/update-cart', 'updateCart')->middleware(['auth']);
 });
+
+Route::get('/checkout', [CheckoutController::class, 'index'])->middleware(['auth']);
+Route::post('/place-order', [CheckoutController::class, 'store'])->middleware(['auth']);
 
 Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);

@@ -5,6 +5,7 @@
         <div class="container">
             <h3 class="fs-3 fw-4 text-secondary">My Cart</h3>
             <hr>
+            @if ($cart->count() != 0)
             <div class="mt-5">
                 <table class="table table-striped">
                     <thead>
@@ -12,7 +13,6 @@
                             <th>Products</th>
                             <th>Price</th>
                             <th>Quantity</th>
-                            <th>Total</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -49,11 +49,6 @@
                                 </td>
                                 <td>
                                     <div class="d-flex align-items-center" style="height: 100">
-                                        <p class="m-0 fw-bold">RP. 10.000.000</p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center" style="height: 100">
                                         <button class="btn btn-danger btn-sm delete-cart-item">Remove</button>
                                     </div>
                                 </td>
@@ -74,11 +69,14 @@
                             <div>
                                 <h4>Total: <span class="float-end">@currency($total)</span></h4>
                             </div>
-                            <a href="" class="btn btn-warning w-100 fs-5 fw-bold">Checkout</a>
+                            <a href="/checkout" class="btn btn-warning w-100 fs-5 fw-bold">Checkout</a>
                         </div>
                     </div>
                 </div>
             </div>
+            @else
+                <h4>No Products found.</h4>
+            @endif
         </div>
     </div>
 @endsection

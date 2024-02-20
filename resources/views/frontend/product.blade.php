@@ -5,7 +5,29 @@
         <div class="container">
             <div class="row gx-4 product_data">
                 <div class="col-md-5">
-                    <div class="bg-primary" style="height: 600px">hallo</div>
+                    @if ($product->productImages)
+                    {{-- <img src="{{ asset($product->productImages[0]->image) }}" class="w-100" alt="Img"> --}}
+                    <div class="exzoom" id="exzoom">
+                        <!-- Images -->
+                        <div class="exzoom_img_box">
+                            <ul class='exzoom_img_ul'>
+                                @foreach ($product->productImages as $itemImage)
+                                    <li><img src="{{ asset($itemImage->image) }}" /></li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <!-- <a href="https://www.jqueryscript.net/tags.php?/Thumbnail/">Thumbnail</a> Nav-->
+                        <div class="exzoom_nav"></div>
+                        <!-- Nav Buttons -->
+                        <p class="exzoom_btn">
+                            <a href="javascript:void(0);" class="exzoom_prev_btn">
+                                < </a>
+                                    <a href="javascript:void(0);" class="exzoom_next_btn"> > </a>
+                        </p>
+                    </div>
+                @else
+                    No Images
+                @endif
                 </div>
                 <div class="col-md-7 bg-light p-3">
                     <div>
@@ -68,82 +90,106 @@
     </div>
 @endsection
 
+@push('scripts')
+    <script>
+        $(function() {
+
+            $("#exzoom").exzoom({
+
+                // thumbnail nav options
+                "navWidth": 60,
+                "navHeight": 60,
+                "navItemNum": 5,
+                "navItemMargin": 7,
+                "navBorder": 1,
+
+                // autoplay
+                "autoPlay": false,
+
+                // autoplay interval in milliseconds
+                "autoPlayTimeout": 2000
+
+            });
+
+        });
+    </script>
+@endpush
 
 @push('script')
     <script>
         $(document).ready(function() {
-    var totalStock = '{{ $product->quantity }}';
+            var totalStock = '{{ $product->quantity }}';
 
-    $('.addToCartBtn').click(function(e) {
-        e.preventDefault();
+            $('.addToCartBtn').click(function(e) {
+                e.preventDefault();
 
-        var product_id = $(this).closest('.product_data').find('.product_id').val();
-        var product_qty = $(this).closest('.product_data').find('.qty-input').val();
+                var product_id = $(this).closest('.product_data').find('.product_id').val();
+                var product_qty = $(this).closest('.product_data').find('.qty-input').val();
 
-        // console.log("ID: ", product_id, 'QTY: ', product_qty);
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $.ajax({
-            method: "POST",
-            url: "/cart",
-            data: {
-                "product_id": product_id,
-                "product_quantity": product_qty
-            },
-            success: function(response) {
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
+                // console.log("ID: ", product_id, 'QTY: ', product_qty);
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
-                Toast.fire({
-                    icon: response.type,
-                    title: response.status
+
+                $.ajax({
+                    method: "POST",
+                    url: "/cart",
+                    data: {
+                        "product_id": product_id,
+                        "product_quantity": product_qty
+                    },
+                    success: function(response) {
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: "top-end",
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.onmouseenter = Swal.stopTimer;
+                                toast.onmouseleave = Swal.resumeTimer;
+                            }
+                        });
+                        Toast.fire({
+                            icon: response.type,
+                            title: response.status
+                        });
+                    }
                 });
-            }
+            });
+
+            $('.increment-btn').click(function(e) {
+                e.preventDefault();
+
+                // var inc_value = $('.qty-input').val();
+                var inc_value = $(this).closest('.product_data').find('.qty-input').val();
+                var value = parseInt(inc_value, 10);
+                value = isNaN(value) ? 0 : value;
+
+                if (value < totalStock) {
+                    value++;
+                    //$('.qty-input').val(value);
+                    $(this).closest('.product_data').find('.qty-input').val(value);
+                }
+            });
+
+            $('.decrement-btn').click(function(e) {
+                e.preventDefault();
+
+                // var dec_value = $('.qty-input').val();
+                var dec_value = $(this).closest('.product_data').find('.qty-input').val();
+                var value = parseInt(dec_value, 10);
+                value = isNaN(value) ? 0 : value;
+
+                if (value > 1) {
+                    value--;
+                    // $('.qty-input').val(value);
+                    $(this).closest('.product_data').find('.qty-input').val(value);
+
+                }
+            });
         });
-    });
-
-    $('.increment-btn').click(function(e) {
-        e.preventDefault();
-
-        // var inc_value = $('.qty-input').val();
-        var inc_value = $(this).closest('.product_data').find('.qty-input').val();
-        var value = parseInt(inc_value, 10);
-        value = isNaN(value) ? 0 : value;
-
-        if (value < totalStock) {
-            value++;
-            //$('.qty-input').val(value);
-            $(this).closest('.product_data').find('.qty-input').val(value);
-        }
-    });
-
-    $('.decrement-btn').click(function(e) {
-        e.preventDefault();
-
-        // var dec_value = $('.qty-input').val();
-        var dec_value = $(this).closest('.product_data').find('.qty-input').val();
-        var value = parseInt(dec_value, 10);
-        value = isNaN(value) ? 0 : value;
-
-        if (value > 1) {
-            value--;
-            // $('.qty-input').val(value);
-            $(this).closest('.product_data').find('.qty-input').val(value);
-
-        }
-    });
-});
     </script>
 @endpush

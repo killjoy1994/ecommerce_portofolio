@@ -28,6 +28,9 @@
     <link rel="stylesheet" href="{{ asset('owlCarousel/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('owlCarousel/css/owl.theme.default.min.css') }}">
 
+    {{-- Ex zoom product image --}}
+    <link rel="stylesheet" href="{{ asset('xzoom/src/jquery.exzoom.css') }}">
+
     <!-- Scripts -->
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
 
@@ -78,10 +81,16 @@
     {{-- Sweet Alert --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    {{-- EX zoom --}}
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous">
+    </script>
+    <script src="{{ asset('/xzoom/src/jquery.exzoom.js') }}"></script>
+
     {{-- Owl Carousel --}}
     {{-- <script src="jquery.min.js"></script> --}}
     <script src="{{ asset('owlCarousel/owl.carousel.min.js') }}"></script>
-{{-- 
+    {{-- 
     <script src="{{ asset('template/js/custom.js') }}"></script> --}}
 
     @stack('scripts')
