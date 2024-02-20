@@ -10,14 +10,18 @@
                         <!-- Brands filter -->
                         <h5 class="text-secondary">Brands</h5>
                         <hr>
-                        @foreach ($brands as $brand)
+                        @forelse ($brands as $brand)
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="brands[]" {{ isset($selectedBrands) && in_array($brand->name, $selectedBrands) ? 'checked' : '' }} value="{{ $brand->name }}" id="brand_{{ $brand->name }}">
                                 <label class="form-check-label" for="brand_{{ $brand->name }}">
                                     {{ $brand->name }}
                                 </label>
                             </div>
-                        @endforeach
+                        @empty
+                        <div>
+                            <h4 class="fs-5 text-secondary">No brands found in this category.</h4>
+                        </div>
+                        @endforelse
 
                         <!-- Price filter -->
                         <div class="mt-4">
@@ -45,13 +49,13 @@
                     <div class="row">
                         @forelse ($products as $product)
                             <div class="col-md-4 mb-5">
-                                <a href="{{'/categories/' . $product->slug }}">
+                                <a href="{{Request::url() . '/' . $product->slug }}">
                                     <img src="{{ asset($product->productImages[0]->image) }}" width="100%" height="250px"
                                         alt="">
                                 </a>
                                 <div>
                                     <h5 class="mt-3 text-dark">@currency($product->price)</h5>
-                                    <a href="{{'/categories/' . $product->slug }}">
+                                    <a href="{{Request::url() . '/' . $product->slug }}">
                                         <p class="m-0 fw-bold">{{ $product->name }}</p>
                                     </a>
                                     <p class="m-0">{{ $product->small_description }}</p>

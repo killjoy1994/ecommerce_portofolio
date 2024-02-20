@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +41,11 @@ Route::controller(CartController::class)->group(function() {
     Route::post('/cart', 'store')->middleware(['auth']);
     Route::post('/delete-cart-item', 'destroyProduct')->middleware(['auth']);
     Route::post('/update-cart', 'updateCart')->middleware(['auth']);
+});
+
+Route::middleware(['auth'])->group(function() {
+    Route::get('/orders', [OrderController::class, 'index']);
+    Route::get('/orders/{id}', [OrderController::class, 'orderDetail']);
 });
 
 Route::get('/checkout', [CheckoutController::class, 'index'])->middleware(['auth']);

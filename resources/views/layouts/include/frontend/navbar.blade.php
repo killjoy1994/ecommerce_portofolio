@@ -19,11 +19,12 @@
                             <li class="nav-item">
                                 <a class="nav-link fs-5" href="/categories">All Categories</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link fs-5" href="/wishlist">Wishlist</a>
-                            </li>
+
                             <li class="nav-item">
                                 <a class="nav-link fs-5" href="/cart">Cart</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link fs-5" href="/orders">Orders</a>
                             </li>
                         </ul>
                     </div>
