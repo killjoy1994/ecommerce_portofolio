@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="h-100 mt-5">
+    <div class="mt-5">
         <div class="container">
             <h3 class="fs-3 fw-4 text-secondary">Our Products</h3>
             <div class="row">
@@ -21,7 +21,7 @@
                             </div>
                         @empty
                             <div>
-                                <h4 class="fs-5 text-secondary">No brands found in this category.</h4>
+                                <p class="text-secondary">No brands found in this category.</p>
                             </div>
                         @endforelse
 
@@ -61,7 +61,7 @@
                         @endif
                     </form>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-9 ps-3">
                     <div class="row">
                         @forelse ($products as $product)
                             <div class="col-md-4 mb-5">
@@ -79,7 +79,7 @@
                             </div>
                         @empty
                             <div>
-                                <h2 class="text-secondary text-center">No products found.</h2>
+                                <p class="fs-4 fw-bold text-secondary text-center">This category have no products.</p>
                             </div>
                         @endforelse
                     </div>

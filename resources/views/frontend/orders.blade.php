@@ -6,7 +6,7 @@
             <h3 class="fs-2 text-secondary fw-4">My Orders</h3>
             <hr>
             <div class="mt-4 row">
-               <table class="table table-striped">
+               <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>Order ID</th>

@@ -11,7 +11,7 @@
             <h6 class="mb-4">Category List
                 <a href="/admin/categories/create" class="btn btn-primary float-end">Add category</a>
             </h6>
-            <table class="table table-striped">
+            <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>#</th>

@@ -2,7 +2,7 @@
     <div class="container-fluid mt-3">
         <div class="d-flex justify-content-between w-100">
             <div class="d-flex align-items-center">
-                <a class="navbar-brand fs-2" href="#">
+                <a class="navbar-brand fs-2" href="/">
                     MyMarket.
                 </a>
                 <form action="/search" class="d-flex m-0 ms-5" style="width: 300px">
@@ -30,48 +30,67 @@
                                 <a class="nav-link fs-5 {{ request()->route()->uri == 'categories' ? 'active-link' : '' }}"
                                     href="/categories">All Categories</a>
                             </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link {{ request()->route()->uri == 'cart' ? 'active-link' : '' }} fs-5"
-                                    href="/cart">Cart</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ request()->route()->uri == 'orders' ? 'active-link' : '' }} fs-5"
-                                    href="/orders">Orders</a>
-                            </li>
-                        </ul>
-                        <div class="ms-3 d-flex align-items-center">
-                            {{-- <a style="color: black" class="me-4" href=""><i
-                                    class="fas fa-search fs-5 text-secondary"></i></a> --}}
-                            {{-- <a class="ms-2" style="color: black" href=""><i class="fas fa-shopping-cart"></i></a> --}}
-                            <div class="btn-group dropstart">
-                                <div class="dropdown-toggle" type="button" id="dropdownMenuButton1"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-user fs-5 text-secondary"></i>
-                                </div>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item" href="#">
-                                            @if (Auth::check())
-                                                {{ Auth::user()->name }}
-                                            @endif
-                                        </a></li>
-                                    <li>
-                                        <div class="dropdown-item">
-                                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                                onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                                {{ __('Logout') }}
-                                            </a>
-
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                                class="d-none">
-                                                @csrf
-                                            </form>
-                                        </div>
+                            @guest
+                                @if (Route::has('login'))
+                                    <li class="nav-item">
+                                        <a class="nav-link fs-5 {{ request()->route()->uri == 'login' ? 'active-link' : '' }}" href="{{ route('login') }}">{{ __('Login') }}</a>
                                     </li>
-                                </ul>
-                            </div>
-                        </div>
+                                @endif
+
+                                @if (Route::has('register'))
+                                    <li class="nav-item">
+                                        <a class="nav-link fs-5 {{ request()->route()->uri == 'register' ? 'active-link' : '' }}" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    </li>
+                                @endif
+                            @else
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->route()->uri == 'cart' ? 'active-link' : '' }} fs-5"
+                                        href="/cart">Cart</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->route()->uri == 'orders' ? 'active-link' : '' }} fs-5"
+                                        href="/orders">Orders</a>
+                                </li>
+                                <li>
+                                    <div class="ms-3 d-flex align-items-center">
+                                        {{-- <a style="color: black" class="me-4" href=""><i
+                                        class="fas fa-search fs-5 text-secondary"></i></a> --}}
+                                        {{-- <a class="ms-2" style="color: black" href=""><i class="fas fa-shopping-cart"></i></a> --}}
+                                        <div class="btn-group dropstart">
+                                            <div class="dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-user fs-5 text-secondary"></i>
+                                            </div>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                <li><a class="dropdown-item" href="#">
+                                                        @if (Auth::check())
+                                                            {{ Auth::user()->name }}
+                                                        @endif
+                                                    </a></li>
+                                                <li>
+                                                    <div class="dropdown-item p-0">
+                                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                                            onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                                            {{ __('Logout') }}
+                                                        </a>
+
+                                                        <form id="logout-form" action="{{ route('logout') }}"
+                                                            method="POST" class="d-none">
+                                                            @csrf
+                                                        </form>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                            @endguest
+
+
+
+                        </ul>
+
                     </div>
 
                 </div>

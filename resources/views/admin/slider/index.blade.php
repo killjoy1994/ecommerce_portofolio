@@ -9,7 +9,7 @@
                 </div>
             @endif
             <h6 class="mb-4">Brand List</h6>
-            <table class="table table-striped">
+            <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>#</th>

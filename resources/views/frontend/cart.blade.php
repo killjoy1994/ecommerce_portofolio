@@ -7,7 +7,7 @@
             <hr>
             @if ($cart->count() != 0)
             <div class="mt-5">
-                <table class="table table-striped">
+                <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>Products</th>
@@ -75,7 +75,7 @@
                 </div>
             </div>
             @else
-                <h4>No Products found.</h4>
+                <h5 class="text-secondary">No Products found, <a href="/categories">shop now.</a></h5>
             @endif
         </div>
     </div>

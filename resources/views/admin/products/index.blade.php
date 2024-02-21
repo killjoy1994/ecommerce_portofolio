@@ -9,7 +9,7 @@
                 </div>
             @endif
             <h6 class="mb-4">Product List <a href="/admin/products/create" class="btn btn-primary float-end">Add product</a></h6>
-            <table class="table table-striped">
+            <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>#</th>

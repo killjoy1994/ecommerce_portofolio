@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CheckoutController;
@@ -37,14 +38,14 @@ Route::controller(FrontendController::class)->group(function () {
     Route::get('/search', 'searchProducts');
 });
 
-Route::controller(CartController::class)->group(function() {
+Route::controller(CartController::class)->group(function () {
     Route::get('/cart', 'index')->middleware(['auth']);
     Route::post('/cart', 'store')->middleware(['auth']);
     Route::post('/delete-cart-item', 'destroyProduct')->middleware(['auth']);
     Route::post('/update-cart', 'updateCart')->middleware(['auth']);
 });
 
-Route::middleware(['auth'])->group(function() {
+Route::middleware(['auth'])->group(function () {
     Route::get('/orders', [OrderController::class, 'index']);
     Route::get('/orders/{id}', [OrderController::class, 'show']);
 });
@@ -90,6 +91,12 @@ Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/users/{id}/edit', [UserController::class, 'edit']);
     Route::put('/users/{id}', [UserController::class, 'update']);
     Route::get('/users/{id}/delete', [UserController::class, 'destroy']);
+
+    Route::get('/orders', [AdminOrderController::class, 'index']);
+    Route::get('/orders/{id}', [AdminOrderController::class, 'show']);
+    Route::put('/orders/{id}', [AdminOrderController::class, 'updateOrderStatus']);
+    Route::get('/invoice/{orderId}', [AdminOrderController::class, 'viewInvoice']);
+    Route::get('/invoice/{orderId}/generate', [AdminOrderController::class, 'generateInvoice']);
 });
 
 Auth::routes();

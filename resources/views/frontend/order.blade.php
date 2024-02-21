@@ -36,7 +36,7 @@
                         <div class="row mt-4">
                             <h5>Order Items</h5>
                             <hr>
-                            <table class="table table-striped">
+                            <table class="table table-bordered table-striped">
                                 <tr>
                                     <thead>
                                         <th>Item Id</th>
