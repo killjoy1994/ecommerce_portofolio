@@ -29,6 +29,16 @@ class FrontendController extends Controller
         }
     }
 
+    public function trending() {
+        $trendings = Product::where('trending', '1')->get();
+        return view('frontend.pages.trending', compact('trendings'));
+    }
+
+    public function featured() {
+        $featured = Product::where('featured', '1')->get();
+        return view('frontend.pages.featured', compact('featured'));
+    }
+
     public function categories()
     {
         $categories = Category::orderBy('name', 'asc')->get();
@@ -79,4 +89,5 @@ class FrontendController extends Controller
             }
         }
     }
+    
 }
