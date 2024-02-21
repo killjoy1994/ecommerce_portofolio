@@ -14,37 +14,37 @@
             </div>
         </div> --}}
         <div class="navbar-nav w-100">
-            <a href="index.html" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+            <a href="index.html" class="nav-item nav-link {{ request()->route()->uri == 'admin/dashboard' ? "active" : "" }}"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-list me-2"></i>Categories</a>
+                <a href="#" class="nav-link dropdown-toggle {{ request()->route()->uri == 'admin/categories' || request()->route()->uri == 'admin/categories/create' ? "active" : "" }}" data-bs-toggle="dropdown"><i class="fa fa-list me-2"></i>Categories</a>
                 <div class="dropdown-menu bg-transparent border-0">
                     <a href="/admin/categories" class="dropdown-item">View Categories</a>
                     <a href="/admin/categories/create" class="dropdown-item">Add Category</a>
                 </div>
             </div>
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-shopping-cart me-2"></i>Products</a>
+                <a href="#" class="nav-link dropdown-toggle  {{ request()->route()->uri == 'admin/products' || request()->route()->uri == 'admin/products/create' ? "active" : "" }}" data-bs-toggle="dropdown"><i class="fa fa-shopping-cart me-2"></i>Products</a>
                 <div class="dropdown-menu bg-transparent border-0">
                     <a href="/admin/products" class="dropdown-item">View Products</a>
                     <a href="/admin/products/create" class="dropdown-item">Add Product</a>
                 </div>
             </div>
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-gift me-2"></i>Brands</a>
+                <a href="#" class="nav-link dropdown-toggle {{ request()->route()->uri == 'admin/brands' || request()->route()->uri == 'admin/brands/create' ? "active" : "" }}" data-bs-toggle="dropdown"><i class="fa fa-gift me-2"></i>Brands</a>
                 <div class="dropdown-menu bg-transparent border-0">
                     <a href="/admin/brands" class="dropdown-item">View Brands</a>
                     <a href="/admin/brands/create" class="dropdown-item">Add Brand</a>
                 </div>
             </div>
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-images me-2"></i>Sliders</a>
+                <a href="#" class="nav-link dropdown-toggle {{ request()->route()->uri == 'admin/sliders' || request()->route()->uri == 'admin/sliders/create' ? "active" : "" }}" data-bs-toggle="dropdown"><i class="fa fa-images me-2"></i>Sliders</a>
                 <div class="dropdown-menu bg-transparent border-0">
                     <a href="/admin/sliders" class="dropdown-item">View Sliders</a>
                     <a href="/admin/sliders/create" class="dropdown-item">Add Slider</a>
                 </div>
             </div>
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-users me-2"></i>Users</a>
+                <a href="#" class="nav-link dropdown-toggle {{ request()->route()->uri == 'admin/users' || request()->route()->uri == 'admin/users/create' ? "active" : "" }}" data-bs-toggle="dropdown"><i class="fa fa-users me-2"></i>Users</a>
                 <div class="dropdown-menu bg-transparent border-0">
                     <a href="/admin/users" class="dropdown-item">View Users</a>
                     <a href="/admin/users/create" class="dropdown-item">Add User</a>

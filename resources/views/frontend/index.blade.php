@@ -4,8 +4,8 @@
     <div>
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-                @foreach ($sliders as $slider)
-                    <div class="carousel-item active" data-bs-interval="10000">
+                @foreach ($sliders as $id => $slider)
+                    <div class="carousel-item {{ $id == 0 ? 'active' : '' }}" data-bs-interval="10000">
                         <img src="{{ asset($slider->image) }}" class="d-block w-100" style="height: 550px" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h3 class="fs-1 text-light">{{ $slider->title }}</h3>
@@ -26,23 +26,19 @@
             </button>
         </div>
 
-        <div class="container py-5 bg-white">
-            <div class="row">
-                <div class="col-6 col-md-3">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam voluptatum libero minima quod eos
-                        consequuntur doloribus eaque, cupiditate ipsum consequatur!x</p>
-                </div>
-                <div class="col-6 col-md-3">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam voluptatum libero minima quod eos
-                        consequuntur doloribus eaque, cupiditate ipsum consequatur!x</p>
-                </div>
-                <div class="col-6 col-md-3">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam voluptatum libero minima quod eos
-                        consequuntur doloribus eaque, cupiditate ipsum consequatur!x</p>
-                </div>
-                <div class="col-6 col-md-3">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam voluptatum libero minima quod eos
-                        consequuntur doloribus eaque, cupiditate ipsum consequatur!x</p>
+        <div class="py-5 bg-white">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 text-center">
+                        <h4>Welcome, Lorem ipsum dolor sit amet consectetur.</h4>
+                        <div class="underline"></div>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quod voluptatum, laboriosam quam
+                            quaerat
+                            voluptatem voluptas. Est praesentium quod distinctio delectus! Eveniet ex atque quae, totam
+                            mollitia, earum culpa quisquam officia, officiis possimus eum natus hic aspernatur omnis
+                            adipisci
+                            eius minima?</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -57,17 +53,15 @@
                         @foreach ($trendings as $trending)
                             <div class="item">
                                 <div class="position-relative">
-                                    <img src="{{ asset($trending->productImages[0]->image) }}" height="200px"
-                                        alt="">
-                                    <a class="badge badge-dark" href=""
-                                        style="position: absolute; top: 5px; right: 5px">
-                                        <i class="fas fa-shopping-cart fs-5"></i>
+                                    <a href="{{ '/categories/' . $trending->category->slug . '/' . $trending->slug }}">
+                                        <img src="{{ asset($trending->productImages[0]->image) }}" height="200px"
+                                            alt="">
                                     </a>
                                 </div>
                                 <div class="d-flex justify-content-between mt-2">
                                     <div>
                                         <h5 class="mt-3 text-dark">@currency($trending->price)</h5>
-                                        <a href="{{ Request::url() . '/' . $trending->slug }}">
+                                        <a href="{{ '/categories/' . $trending->category->slug . '/' . $trending->slug }}">
                                             <p class="m-0 fw-bold">{{ $trending->name }}</p>
                                         </a>
                                         <p class="m-0">{{ $trending->small_description }}</p>
@@ -92,10 +86,10 @@
                                 <div class="position-relative">
                                     <img src="{{ asset($featuredItem->productImages[0]->image) }}" height="200px"
                                         alt="">
-                                    <a class="badge badge-dark" href=""
+                                    {{-- <a class="badge badge-dark" href=""
                                         style="position: absolute; top: 5px; right: 5px">
                                         <i class="fas fa-shopping-cart fs-5"></i>
-                                    </a>
+                                    </a> --}}
                                 </div>
                                 <div class="d-flex justify-content-between mt-2">
                                     <div>

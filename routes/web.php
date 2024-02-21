@@ -34,6 +34,7 @@ Route::controller(FrontendController::class)->group(function () {
     Route::get('/categories/{categories_slug}', 'products');
     Route::get('/filter', 'filterProducts')->name('products.filter');
     Route::get('/categories/{categories_slug}/{product_slug}', 'productDetail');
+    Route::get('/search', 'searchProducts');
 });
 
 Route::controller(CartController::class)->group(function() {
@@ -45,7 +46,7 @@ Route::controller(CartController::class)->group(function() {
 
 Route::middleware(['auth'])->group(function() {
     Route::get('/orders', [OrderController::class, 'index']);
-    Route::get('/orders/{id}', [OrderController::class, 'orderDetail']);
+    Route::get('/orders/{id}', [OrderController::class, 'show']);
 });
 
 Route::get('/checkout', [CheckoutController::class, 'index'])->middleware(['auth']);

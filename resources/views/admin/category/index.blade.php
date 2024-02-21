@@ -8,7 +8,9 @@
                     <h5>{{ session('message') }}</h5>
                 </div>
             @endif
-            <h6 class="mb-4">Category List</h6>
+            <h6 class="mb-4">Category List
+                <a href="/admin/categories/create" class="btn btn-primary float-end">Add category</a>
+            </h6>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -29,14 +31,16 @@
                             <td>{{ $category->description }}</td>
                             <td>
                                 <div style="width: 100px; height: 60px">
-                                    <img style="width: 100%; height: 100%" src="{{ asset('storage/category/' . $category->image) }}" alt="">
+                                    <img style="width: 100%; height: 100%"
+                                        src="{{ asset('storage/category/' . $category->image) }}" alt="">
                                 </div>
-                                
+
                             </td>
                             <td>
                                 <a class="btn btn-success btn-sm"
                                     href="{{ '/admin/categories/' . $category->id . '/edit' }}">Edit</a>
-                                <a class="btn btn-danger btn-sm" href="{{ '/admin/categories/' . $category->id . '/delete'}}">Delete</a>
+                                <a class="btn btn-danger btn-sm"
+                                    href="{{ '/admin/categories/' . $category->id . '/delete' }}">Delete</a>
                             </td>
                         </tr>
                     @empty

@@ -8,7 +8,7 @@
                     <h5>{{ session('message') }}</h5>
                 </div>
             @endif
-            <h6 class="mb-4">Brand List</h6>
+            <h6 class="mb-4">Brand List <a href="/admin/brands/create" class="btn btn-primary float-end">Add brand</a></h6>
             <table class="table table-striped">
                 <thead>
                     <tr>

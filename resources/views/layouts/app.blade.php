@@ -39,6 +39,11 @@
             margin: 0 10px;
         }
 
+        .active-link {
+            font-weight: 600;
+            color: rgba(0, 0, 0, 0.9)
+        }
+
         /* Chrome, Safari, Edge, Opera */
         input::-webkit-outer-spin-button,
         input::-webkit-inner-spin-button {
